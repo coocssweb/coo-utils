@@ -1,5 +1,8 @@
 /**
- * 实现 compose 方法
+ * for: compose 方法 compose(fn1, fn2, fn3 ...)(arg)   =>  fn1(fn2(fn3(arg)))
+ * demo ========================
+ * compose(fn1, fn2, fn3 ...)(arg);
+ * =============================
  * Created by 王佳欣 on 2018/11/6.
  */
 export default (...fns) => {

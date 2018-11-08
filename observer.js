@@ -1,5 +1,13 @@
 /**
  * for：实现 javascript 观察者模式
+ * demo ========================
+ * let emitter = new Observer();
+ * emitter.$on('broadcast', () => {
+ *      console.log('broadcast');
+ * });
+ *
+ * emitter.$emit();
+ * =============================
  * Created by 王佳欣 on 2018/11/4.
  */
 let Observer = function () {
