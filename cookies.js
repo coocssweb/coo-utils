@@ -13,18 +13,16 @@ class Cookies {
     }
 
     getKey (key) {
-        return `${this.preId}_${key}`
+        return `${this.preId}_${key}`;
     }
 
-    // 设置cookie项
-    setItem (key, value, expireMinute, callback) {
+    // 设置cookie项，默认过期时间24小时
+    setItem (key, value, expireMinute = 1440, callback) {
         key = this.getKey(key);
-        // 过期时间，默认24小时
-        expireMinute = expireMinute || 1440;
-        let millisecond = new Date().getTime();
-        let expiresTime = new Date(millisecond + 60 * 1000 * expireMinute);
-        let expires = expireMinute === null ? '' : `;expires=${expiresTime.toGMTString()}`;
-        document.cookie = `${key}=${escape(value)};domain=${this.domain};path=/${expires}`;
+        expireMinute = 60 * 1000 * expireMinute;
+        let timestamp = new Date().getTime();
+        let expiresTime = new Date(timestamp + expireMinute);
+        document.cookie = `${key}=${escape(value)};domain=${this.domain};path=/;expires=${expiresTime.toGMTString()}`;
         callback && callback({key, value});
     }
 
@@ -32,14 +30,14 @@ class Cookies {
     getItem (key) {
         key = this.getKey(key);
         if (document.cookie.length > 0) {
-            let charStart = document.cookie.indexOf(`${key}=`);
-            if (charStart !== -1) {
-                charStart = charStart + key.length + 1;
-                let charEnd = document.cookie.indexOf(';', charStart);
-                if (charEnd === -1) {
-                    charEnd = document.cookie.length;
+            let charStartIndex = document.cookie.indexOf(`${key}=`);
+            if (charStartIndex !== -1) {
+                charStartIndex = charStartIndex + key.length + 1;
+                let charEndIndex = document.cookie.indexOf(';', charStartIndex);
+                if (charEndIndex === -1) {
+                    charEndIndex = document.cookie.length;
                 }
-                return unescape(document.cookie.substring(charStart, charEnd));
+                return unescape(document.cookie.substring(charStartIndex, charEndIndex));
             }
         }
         return '';
