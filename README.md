@@ -7,7 +7,6 @@
 因为这样我可以适时的根据不同的项目，对这些类做一些小调整。
 
 ## 它们都有什么？
-npm set registry http://npm.meitu-int.com
 
 ```bash
     ├──compose.js                     * compose，实现多个function的合并处理
