@@ -20,7 +20,8 @@
 ├──storage.js                     * localstorage的一些操作（可设置过期时间）
 ├──uuid.js                        * 根据UserAgent、访问时间、随机数生成的一个唯一值
 ├──uploader.js                    * 文件上传、带进度、断点续传、分片上传等方法
-├──timeago.js                        * 一些时间处理，如时间格式化、倒计时、时间间隔等等
+├──timeago.js                     * 一些时间处理，如时间格式化、倒计时、时间间隔等等
+├──throttler.js                   * 防抖、节流
 ```
 
 ### demo
