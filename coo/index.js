@@ -28,8 +28,6 @@
             typeof obj;
     };
 
-    // 输出[object RegExp]
-
     // 深度拷贝
     _.deepClone = function (obj) {
         if (typeof obj !== 'object') {
@@ -51,6 +49,8 @@
     _.equal = function (objA, objB) {
 
     };
+
+
 
     if (typeof exports !== 'undefined' && !exports.nodeType) {
         if (typeof module !== 'undefined' && !module.nodeType && module.exports) {
