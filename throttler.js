@@ -29,7 +29,7 @@ export const throttle = function(fn, options = {}) {
 
         if (immediate) {
             result = fn.apply(context, args);
-            leading = false;
+            immediate = false;
         } else if (!timeout) {
             timeout = setTimeout(later, interval);
         }
@@ -43,7 +43,7 @@ export const throttle = function(fn, options = {}) {
     };
 
     return throttler;
-}
+};
 
 // 防抖
 export const debounce = function (fn,  options = {}) {
@@ -85,4 +85,4 @@ export const debounce = function (fn,  options = {}) {
     };
 
     return debouncer;
-}
+};

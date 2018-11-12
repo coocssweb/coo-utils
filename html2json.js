@@ -72,7 +72,7 @@ export default (content) => {
                 attrs = {};
                 attrMatch && attrMatch.map((item) => {
                     attrName2Value = item.split('=');
-                    attrs[attrName2Value[0].trim()] = attrName2Value[1].replace(regexUtil.quote, "");
+                    attrs[attrName2Value[0].trim()] = attrName2Value[1].replace(regexUtil.quote, '');
                 });
 
                 insertNode({
