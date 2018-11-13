@@ -30,3 +30,6 @@
 
 ### 测试单元
 mocha
+```bash
+npm run test
+```
