@@ -46,7 +46,7 @@
 
         for (let key in obj) {
             if (obj.hasOwnProperty(key)) {
-                newObj[key] = _.type(obj[key]) === 'object' ? _.deepClone(obj[key]) : obj['key'];
+                newObj[key] = _.type(obj[key]) === 'object' ? _.deepClone(obj[key]) : obj[key];
             }
         }
 
