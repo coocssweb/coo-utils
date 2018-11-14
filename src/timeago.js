@@ -2,12 +2,7 @@
  * for：一些时间处理
  * Created by 王佳欣 on 2018/11/8.
  */
-// 单位换算
-// const MINUTE_TO_SECOND = 60 * 1000;
-// const HOUR_TO_SECOND = 60 * MINUTE_TO_SECOND;
-// const DAY_TO_SECOND = 24 * HOUR_TO_SECOND;
-// const MONTH_TO_SECOND = 30 * HOUR_TO_SECOND;
-// const YEAR_TO_SECOND =  365 * DAY_TO_SECOND;
+// 分钟、小时、日、周、月、年对应的描述
 const SECOND_ARRAY = [60, 60, 24, 7, 365/12/7, 12];
 
 /**
@@ -83,10 +78,23 @@ export const format = (time = new Date(), fmt = 'yyyy-MM-dd hh:mm:ss') => {
     return fmt;
 };
 
+/**
+ * 时间间隔格式化
+ * @param time
+ * @param diff
+ * @param fmt
+ * @returns {string}
+ */
+export const formatDiff = (time = new Date(), diff, fmt = 'yyyy-MM-dd hh:mm:ss') => {
+    let timestamp = toTimestamp(time);
+    timestamp += diff;
+    return format(timestamp, fmt);
+};
+
 // 时间格式
 const AGO_FORMAT= [
-    ['刚刚', '片刻后'],                                  // 10秒内
-    ['%s 秒前', '%s 秒后'],                              // 10~60秒
+    ['刚刚', '片刻后'],
+    ['%s 秒前', '%s 秒后'],
     ['%s 分钟前', '%s 分钟后'],
     ['%s 小时前', '%s 小时后'],
     ['%s 天前', '%s 天后'],
@@ -94,6 +102,7 @@ const AGO_FORMAT= [
     ['%s 月前', '%s 月后'],
     ['%s 年前', '%s 年后']
 ];
+
 /**
  * 时间格式化
  * 3年前，3月前，3星期前，3天前，3小时前，52分钟前，刚刚
@@ -113,14 +122,44 @@ export const formatAgo = (time) => {
 };
 
 /**
- * 时间间隔格式化
- * @param time
- * @param diff
- * @param fmt
- * @returns {string}
+ * 计时器
  */
-export const formatDiff = (time = new Date(), diff, fmt = 'yyyy-MM-dd hh:mm:ss') => {
-    let timestamp = toTimestamp(time);
-    timestamp += diff;
-    return format(timestamp, fmt);
+export const timer = ({
+    second,                                 // 时间数
+    type = 'countdown',                     // 倒计时，可取timer、countdown；time为正序计时，countdown为倒计时
+    delay = 1000,                           // 计时间隔
+    immediate = true,                       // 马上执行回调
+    func,                                   // 回调方法
+}) => {
+    // 建立两个时间戳
+    // 解决，比如，屏幕息屏后造成的倒计时中断问题
+    let preTimestamp = Date.now(),
+        timestamp,
+        diff,
+        remind;
+    let timing = (second, delay, func) => {
+        timing.timeId = setTimeout(() => {
+            clearTimeout(timing.timeId);
+            timestamp = Date.now();
+            diff = parseInt((timestamp - preTimestamp) / 1000) * 1000;
+            remind = second + (type === 'countdown' ? -diff : diff);
+            func && func(remind);
+            timing(remind, delay, func);
+            preTimestamp = timestamp;
+        }, delay);
+    };
+
+    // 终止倒计时
+    timing.stop = () => {
+        clearTimeout(timing.timeId);
+    };
+    // 重重新启动
+    timing.restart = () => {
+        timing(remind, delay, func);
+    };
+
+    timing(second, delay, func);
+    immediate && func && func(second);
+
+    return timing;
 };
