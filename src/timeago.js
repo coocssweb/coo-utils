@@ -143,6 +143,8 @@ export const timer = ({
             timestamp = Date.now();
             diff = parseInt((timestamp - preTimestamp) / 1000) * 1000;
             remind = second + (type === 'countdown' ? -diff : diff);
+            // 回调func方法
+            // 你可以再回调函数里根据剩余时间，做终止计时等等
             func && func(remind);
             timing(remind, delay, func);
             preTimestamp = timestamp;
