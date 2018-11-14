@@ -1,9 +1,9 @@
-# 一些有用的Javascript工具类
+# some utils for javascript
 
-### 源于哪里？
+### why do
 项目开发中，发现有一些工具类是基本上每个项目我会用到的。因此重新整理了一下，方便自己使用。
 
-### 为什么不用NPM管理？
+### why no npm
 因为这样我可以适时的根据不同的项目，对这些类做一些小调整。
 
 ### 它们都有什么？
@@ -26,10 +26,10 @@
 ```
 
 ### demo
-每个工具类代码注释中有对应的demo
+Every uitl has a use case in the explain.
 
-### 测试单元
-mocha
+### tests
+Tests are using mocha, to run the tests use:
 ```bash
-npm run test
+npm test
 ```
