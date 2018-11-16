@@ -18,7 +18,12 @@ let Observer = function () {
 // 添加订阅
 Observer.prototype.$on = function (event, fn) {
     let self = this;
-    (self._events[event] || (self._events[event] = [])).push(fn);
+
+    if (!self._events[event]) {
+        self._events[event] = [];
+    }
+
+    self._events[event].push(fn);
     return self;
 };
 
@@ -69,6 +74,8 @@ Observer.prototype.$emit = function (event, ...args) {
     let callbacks = self._events[event];
     if (callbacks) {
         callbacks.map((callback) => {
+            // apply 绑定回调方法到当前observer
+            // 不然callback会是匿名函数,this => undefined
             callback.apply(self, args);
         });
     }
