@@ -123,6 +123,12 @@ export const formatAgo = (time) => {
 
 /**
  * 计时器
+ * @param second
+ * @param type
+ * @param delay
+ * @param immediate
+ * @param func
+ * @returns {function(*, *=, *=)}
  */
 export const timer = ({
     second,                                 // 时间数
