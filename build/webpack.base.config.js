@@ -8,22 +8,26 @@ module.exports = function webpackBaseConfig (NODE_ENV = 'development') {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.html',
-            chunks: ['index'],
+            chunks: ['common', 'index'],
             hash: false,
             inject: 'body',
             xhtml: false,
             minify: {
                 removeComments: true,
             }
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['common']
         })
     ];
 
     const webpackConfig = {
         entry: {
-            index: './index.js'
+            index: './index.js',
+            common: ['./common/index.js']
         },
         output: {
-            path: resolve('../dist'),
+            path: resolve('./dist'),
             publicPath: '',
             filename: '[name].js',
             chunkFilename: '[name].js'
@@ -73,16 +77,16 @@ module.exports = function webpackBaseConfig (NODE_ENV = 'development') {
         };
     } else {
         webpackConfig.plugins.push(
-            new webpack.optimize.UglifyJsPlugin({
-                compress: {
-                    warnings: false,
-                    dead_code: true
-                },
-                sourceMap: false,
-                output: {
-                    comments: false
-                }
-            })
+            // new webpack.optimize.UglifyJsPlugin({
+            //     compress: {
+            //         warnings: false,
+            //         dead_code: true
+            //     },
+            //     sourceMap: false,
+            //     output: {
+            //         comments: false
+            //     }
+            // })
         );
     }
 

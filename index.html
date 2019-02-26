@@ -3,8 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            height: 1500px;
+        }
+        .panel {
+            margin: 100px;
+            height: 100px;
+            width: 100px;
+            border: 1px solid #efefef;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .panel:hover .list{
+            /*transform: translateY(-1000px);*/
+            /*transition: transform 1s steps(10);*/
+            animation: slideUp 1s steps(9) alternate infinite forwards;
+        }
+        
+        @keyframes slideUp {
+            0%{
+                transform: translateY(0px);
+            }
+
+            100%{
+                transform: translateY(-900px);
+            }
+        }
+        
+        .list{
+            position: absolute;
+            top: -1px;
+            left: 0px;
+            height: 1000px;
+            width: 100px;
+        }
+        .item{
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            color: #ffffff;;
+            font-size: 20px;
+        }
+        .item-01{
+            background-color: #2e82ff;
+        }
+        .item-02{
+            background-color: #333333;
+        }
+        .item-03{
+            background-color: #a41f24;
+        }
+        .item-04{
+            background-color: #27bc08;
+        }
+        .item-05{
+            background-color: #9b22b4;
+        }
+        .item-06{
+            background-color: #22b496;
+        }
+        .item-07{
+            background-color: #92ec71;
+        }
+        .item-08{
+            background-color: #f2e948;
+        }
+        .item-09{
+            background-color: #ff8686;
+        }
+        .item-10{
+            background-color: #957de6;
+        }
+
+    </style>
 </head>
 <body>
-<a href="javascript:;" class="btn-stop">停止</a>
+    <div class="panel">
+        <div class="list">
+            <div class="item item-01">1</div>
+            <div class="item item-02">2</div>
+            <div class="item item-03">3</div>
+            <div class="item item-04">4</div>
+            <div class="item item-05">5</div>
+            <div class="item item-06">6</div>
+            <div class="item item-07">7</div>
+            <div class="item item-08">8</div>
+            <div class="item item-09">9</div>
+            <div class="item item-10">10</div>
+        </div>
+    </div>
+<input type="file" class="file" />
 </body>
 </html>

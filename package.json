@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.dev.config.js --open --hot",
+    "build": "webpack --config build/webpack.test.config.js --progress --hide-modules",
     "test": "mocha --compilers js:babel-core/register"
   },
   "repository": {
@@ -35,5 +36,8 @@
     "webpack-dev-server": "^2.3.0",
     "webpack-merge": "^4.1.0",
     "webpack-stream": "^3.2.0"
+  },
+  "dependencies": {
+    "co": "^4.6.0"
   }
 }

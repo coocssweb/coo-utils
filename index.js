@@ -1,1 +1,2 @@
-// import './todos/compose';
+"use strict";
+import './src/curry';
