@@ -59,6 +59,34 @@ function PromiseFn(func) {
     func(resolve, reject);
 }
 
+PromiseFn.all = function (...args) {
+    function Fn() {
+        let haveDoneCount = 0;
+        let done;
+        let results = [];
+        function handle (result) {
+            //
+            if (haveDoneCount === args.length) {
+                done();
+            }
+        }
+        
+        this.then = function (callback) {
+            done = callback;
+        };
+
+        args.forEach((task, index) => {
+            task().then((result) => {
+                results[index] = result;
+            }, (error) => {
+                results[index] = error;
+            })
+        });
+    }
+
+    return new Fn();
+};
+
 new PromiseFn((resolve, reject) => {
     console.log('step 0');
     resolve(1);

@@ -1,2 +1,3 @@
 "use strict";
-import './src/curry';
+import './todos/new';
+
