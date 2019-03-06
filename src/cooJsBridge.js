@@ -6,8 +6,8 @@
         }
     }();
 
-    window.__callbackMap = {};
-
+    // 信息传接器
+    // 实现send: 发送通讯，register: 注册通讯回调
     function Messager () {
         var that = this;
         Object.defineProperty(this, '__callbackMap', {
@@ -39,7 +39,7 @@
     Messager.prototype = {
         registerCallback: function (eventName, callback, data) {
             this.__callbackMap[eventName] = callback;
-            this.__dataMap[eventName] = data;
+            this.__dataMap[eventName] = JSON.stringify(data || {});
         },
         removeCallback: function (eventName) {
             console.log(window.__callbackMap, window.__dataMap);
@@ -60,6 +60,7 @@
         }
     };
 
+    // CooJsBridge 基础类
     var CooJsBridge = {
         __messager: new Messager(),
         invoke: function (eventName, data, callback) {
@@ -118,6 +119,7 @@
     }
     
     if (!window.jCoo) {
+        // 提供的统一接口
         var jCoo = {
             ready: function (fn) {
                 fn();
@@ -202,7 +204,8 @@
             trigger: function (info) {
                 info = info || {};
                 trigger(info.eventName, info.data, info);
-            }
+            },
+            dispatchEvent: dispatchEvent
         };
 
         this.coo = this.jCoo = jCoo;
