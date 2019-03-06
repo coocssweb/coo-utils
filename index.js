@@ -1,3 +1,3 @@
 "use strict";
-import './todos/new';
+import './src/cooJsBridge';
 

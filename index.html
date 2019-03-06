@@ -99,9 +99,48 @@
         </div>
     </div>
 <input type="file" class="file" />
+    <button class="btn">测试按钮</button>
 </body>
 </html>
-<script>
-    "use strict";
-
+<script type="text/javascript">
+    jCoo.ready(function () {
+        console.log('ready');
+        document.querySelector('.btn').onclick = function (e) {
+            jCoo.chooseImage({
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+            jCoo.chooseImage({
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+            jCoo.chooseImage({
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+            jCoo.chooseImage({
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+            jCoo.chooseImage({
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+            jCoo.chooseImage({
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+            jCoo.chooseImage({
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+        };
+    });
 </script>
